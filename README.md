@@ -2,6 +2,9 @@
 - [자바의 특징](#자바의-특징)
 - [JVM](#jvm)
 - [Variable](#variable)
+- [기본형과 참조형](#기본형과-참조형)
+- [배열](#배열)
+
 
 ## 자바의 특징
 - 객체지향
@@ -24,3 +27,36 @@ Java Virtual Machine : 자바 프로그램이 실행되는 가상 컴퓨터(VM)�
     - 지역 변수 : 다른 변수들과 다르게 0으로 *자동 초기화*가 되지 않기 때문에 초기화가 필요합니다.
 - 상수(constant) : `final int MAX = 100;`
 - 리터럴 : 수학적 상수와 같은 개념입니다.
+
+## 기본형과 참조형
+기본형 : 총 8개로 실제 값을 저장합니다.
+- boolean, char, byte, short, int, long, float, double <br />
+
+참조형 : 기본형을 제외한 나머지(String, System 등)를 말합니다.
+```java
+Date today;         // 참조형 변수 today 선언
+today = new Date(); // today에 객체의 주소 저장.
+```
+자동 형변환 : 기존의 값을 최대한 보존하며 컴파일러가 자동으로 추가합니다.
+```java
+float f = 1234;
+float f = (float)1234;
+```
+
+## 배열
+```java
+public class Main {
+    public static void main(String[] args) {
+        int[] score;                        // 배열 score선언(참조 변수)
+        score = new int[5];                 // 배열의 생성(int저장공간 x 5) 
+        System.out.println(score.length);   // 배열의 길이
+
+        // char배열인 경우만 아래 방법으로 요소 출력 가능.
+        char[] cArr = {'a', 'b', 'c'};
+        System.out.print(cArr);
+
+        // 요소들을 String으로 치환 후 [a, b, c]로 출력된다.
+        System.out.println(Arrays.toString(cArr));  
+    }
+}
+```
