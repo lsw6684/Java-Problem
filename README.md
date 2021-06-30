@@ -4,7 +4,7 @@
 - [Variable](#variable)
 - [기본형과 참조형](#기본형과-참조형)
 - [배열](#배열)
-
+- [Arrays](#arrays)
 
 ## 자바의 특징
 - 객체지향
@@ -59,4 +59,36 @@ public class Main {
         System.out.println(Arrays.toString(cArr));  
     }
 }
+```
+
+## Arrays
+Arrays는 하나의 클래스입니다. <hr />
+배열의 비교와 출력 - toString(), equals()
+- deepToString : toString()의 2차원 버전
+```java
+int [][] arr2D = {{11, 12}, {21, 22}};
+
+// [[11, 12], [21, 22]]
+System.out.println(Arrays.deepToString(arr2D)); 
+```
+- deepEquals : equals()의 2차원 버전
+```java
+String[] str2D = new String[][]{{"aaa", "bbb"}, {"aaa", "bbb"}};
+String[] str2D2 = new String[][]{{"aaa", "bbb"}, {"aaa", "bbb"}};
+
+System.out.println(Arrays.equals(str2D, str2D2));       // false
+System.out.println(Arrays.deepEquals(str2D, str2D2));       // true
+```
+- copyOf(), copyOfRange()
+```java
+int[] arr = {0, 1, 2, 3, 4};
+int[] arr2 = Arrays.copyOf(arr, arr.length);    // arr2 = [0, 1, 2, 3, 4]
+int[] arr3 = Arrays.copyOf(arr, 7);             // arr3 = [0, 1, 2, 3, 4, 0, 0]
+int[] arr4 = Arrays.copyOfRange(arr, 2, 4);     // arr4 = [2, 3]
+```
+- sort()
+```java
+int[] arr = {3, 2, 0, 1, 4};
+Arrays.sort(arr);
+System.out.println(Arrays.toString(arr));       // [0, 1, 2, 3, 4]
 ```
