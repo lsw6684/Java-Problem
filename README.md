@@ -144,3 +144,5 @@ System.out.println(Arrays.toString(arr));       // [0, 1, 2, 3, 4]
     t.channel = 7;      // Tv인스턴스의 멤버변수 channel의 값을 7로
     t.channelDown();    // 메서드 호출
     ```
+- GC, Garbage Collector <br />
+Mark, Sweep, Impact 과정을 통해 동적할당 메모리 중, 필요 없는 영역을 해제합니다.
