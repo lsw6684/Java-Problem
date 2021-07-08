@@ -6,6 +6,7 @@
 - [배열](#배열)
 - [Arrays](#arrays)
 - [객체지향](#객체지향)
+- [객체 배열](#객체-배열)
 
 
 ## 자바의 특징
@@ -146,3 +147,5 @@ System.out.println(Arrays.toString(arr));       // [0, 1, 2, 3, 4]
     ```
 - GC, Garbage Collector <br />
 Mark, Sweep, Impact 과정을 통해 동적할당 메모리 중, 필요 없는 영역을 해제합니다.
+
+## 객체 배열
