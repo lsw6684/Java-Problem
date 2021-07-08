@@ -149,3 +149,13 @@ System.out.println(Arrays.toString(arr));       // [0, 1, 2, 3, 4]
 Mark, Sweep, Impact 과정을 통해 동적할당 메모리 중, 필요 없는 영역을 해제합니다.
 
 ## 객체 배열
+객체 배열은 참조변수 배열을 의미합니다. 특정 객체들에 대한 참조 변수를 배열로써 정의합니다.<br />
+`Tv tv1, tv2, tv3;`를 배열로 하면 `Tv[] tvArr = new Tv[3];`
+```java
+tvArr[0] = new Tv();
+tvArr[1] = new Tv();
+tvArr[2] = new Tv();
+
+// 위와 같은 초기화를 한 번에 하면
+Tv[] tvArr = { new Tv(), new Tv(), new Tv() };
+```
