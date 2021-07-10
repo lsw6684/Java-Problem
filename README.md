@@ -1,4 +1,4 @@
-# Java-Problem
+# Java-Foundation
 - [자바의 특징](#자바의-특징)
 - [JVM](#jvm)
 - [Variable](#variable)
@@ -7,7 +7,6 @@
 - [Arrays](#arrays)
 - [객체지향](#객체지향)
 - [객체 배열](#객체-배열)
-
 
 ## 자바의 특징
 - 객체지향
@@ -148,6 +147,76 @@ System.out.println(Arrays.toString(arr));       // [0, 1, 2, 3, 4]
 - GC, Garbage Collector <br />
 Mark, Sweep, Impact 과정을 통해 동적할당 메모리 중, 필요 없는 영역을 해제합니다.
 
+### 클래스의 정의
+클래스 == 설계도 || 데이터 + 함수 || 사용자 정의 타입
+
+- 비 객체지향적 클래스
+    ```java
+    int hour = 12;
+    int minute = 34;
+    int second = 56;
+    ```
+- 객체지향적 클래스
+    ```java
+    class Time {
+        int hour;
+        int minute;
+        int second;
+    }
+
+    Time t = new Time();
+    t.hour = 12;
+    t.minute = 34;
+    t.second = 56;
+    ```
+
+- 선언위치에 따른 변수의 종류
+    ```java
+    // 클래스 영역
+    class Variables
+    {
+        int iv;             // 인스턴스 변수 - 개별 속성
+        static int cv;      // 클래스 변수(static변수, 공유변수) - 공통 속성
+        
+        // 메서드 영역
+        void method()
+        {
+            int lv = 0;     // 지역변수
+        }
+    }
+    ```
+- 클래스 변수와 인스턴스 변수
+    ```java
+    public class Main {
+        public static void main(String[] args) {
+            // (비 권장)Card의 Class variable 사용 
+            Card c1 = new Card();
+            c1.width = 23;
+
+            // (권장)Card의 Class variable 사용 
+            Card.width = 23;
+
+            // Instance variable 사용
+            Card c2 = new Card();
+            c2.number = 2;
+
+        }
+
+    }
+    class Card {
+        // Instance variable
+        String kind;
+        int number;
+
+        // Class variable
+        static int width = 100;
+        static int height = 250;
+    }
+    ```
+### 메서드
+중복 제거를 목적으로 문장들을 묶습니다.
+
+
 ## 객체 배열
 객체 배열은 참조변수 배열을 의미합니다. 특정 객체들에 대한 참조 변수를 배열로써 정의합니다.<br />
 `Tv tv1, tv2, tv3;`를 배열로 하면 `Tv[] tvArr = new Tv[3];`
@@ -159,3 +228,4 @@ tvArr[2] = new Tv();
 // 위와 같은 초기화를 한 번에 하면
 Tv[] tvArr = { new Tv(), new Tv(), new Tv() };
 ```
+
