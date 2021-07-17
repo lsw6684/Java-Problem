@@ -8,6 +8,7 @@
 - [객체지향](#객체지향)
 - [객체 배열](#객체-배열)
 - [호출 스택](#호출-스택)
+- [매개변수](#매개변수)
 
 ## 자바의 특징
 - 객체지향
@@ -238,3 +239,9 @@ Tv[] tvArr = { new Tv(), new Tv(), new Tv() };
 메서드 수행에 필요한 메모리가 제공되는 공간입니다.
 <p align="center"><img src="images/cs.png" width="60%"></p>
 <p align="center"><img src="images/cs2.png" width="60%"></p>
+
+## 매개변수
+- 기본형 매개변수 : 변수의 값을 읽기만 할 수 있습니다.(Read Only)
+- 참조형 매개변수 : 변수의 값을 읽고 변경할 수 있습니다.(Read & Write)
+    - 같은 클래스에 있거나 static method라면 참조 변수를 생략할 수 있습니다.
+    - static method는 객체 생성없이 호출 가능합니다.
