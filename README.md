@@ -273,3 +273,25 @@ class MyMath2 {
     - 메서드 내에서 **인스턴스 변수(iv) 사용 불가**합니다.
 ### 즉, iv를 사용하지 않을 때 static을 사용합니다.
 
+<br />
+
+- 메서드 간의 호출과 참조
+    - static 메서드는 인스턴스 메서드를 호출할 수 없습니다. im은 iv를 필요로 하여 객체가 생성돼야 하기 때문입니다.
+        ```java
+        class TestClass {
+            void instanceMethod() {}
+            static void staticMethod() {}
+
+            void instanceMethod2() {        // 인스턴스 메서드
+                instanceMethod();           // 다른 im 호출 가능
+                staticMethod();             // static method 호출 가능.
+            }
+
+            static void staticMethod2() {   // static method
+                instanceMethod();           // Error!! im 호출 불가능
+                staticMethod();             // static method 호출 가능.
+            }
+        }
+
+        statc method는 static method를 호출할 수 있지만, iv사용이나 im호출은 객체(iv의 묶음)가 없을 수 있기 때문에 불가능 합니다.
+        ```
