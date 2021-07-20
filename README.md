@@ -10,6 +10,7 @@
 - [호출 스택](#호출-스택)
 - [매개변수](#매개변수)
 - [static 메서드와 인스턴스 메서드](#static-메서드와-인스턴스-메서드)
+- [오버로딩과 오버라이딩](오버로딩과-오버라이딩)
 
 ## 자바의 특징
 - 객체지향
@@ -295,3 +296,62 @@ class MyMath2 {
 
         statc method는 static method를 호출할 수 있지만, iv사용이나 im호출은 객체(iv의 묶음)가 없을 수 있기 때문에 불가능 합니다.
         ```
+
+## 오버로딩과 오버라이딩
+### 오버로딩 Overloading
+한 클래스 안에 같은 이름의 메서드를 여러 개 정의합니다.
+```java
+void println()
+void println(boolean x)
+void println(char x)
+void println(char[] x)
+void println(double x)
+void println(float x)
+void println(int x)
+void println(long x)
+void println(Object x)
+void println(String x)
+```
+- 오버로딩 조건 3가지
+1. 메서드 이름이 같습니다.
+2. 매개변수의 개수 또는 타입이 다릅니다.
+3. 반환 타입은 영향이 없습니다.
+    - Ambiguous
+        ```java
+        long add(int a, long b) {
+            return a + b;
+        }
+
+        long add(long a, int b) {
+            return a - b;
+        }
+        ```
+- 생성자 Constructor : 인스턴스가 생성될 때마다 호출되는 **인스턴스 초기화 메서드**로 초기화를 편리하게 합니다.
+    - 이름이 클래스 이름과 같아야 합니다.
+    - 리턴값이 없습니다.(void❌)
+    - 모든 클래스는 반드시 생성자를 가져야 합니다. 
+- 기본 생성자 Default constructor : 매개변수가 없는 생성자를 의미하며 선언되지 않을 경우, 컴파일러가 자동으로 추가합니다. **단, 하나도 없을 때만 자동 추가되며 항상 만들어 주는 것이 좋습니다.**
+    ```java
+    클래스이름() {} // 기본 생성자
+    Point() {}      // Point클래스의 기본 생성자
+    -------------------------------------------
+    class Data_1 {
+        int value;
+    }
+
+    class Data_2 {
+        int value;
+        // Error 해결 방안 : Data_2() {}
+        Data_2(int x) { // 매개변수가 있는 생성자
+            value = x;
+        }
+    }
+
+    class main {
+        public static void main(String[] args) {
+            Data_1 d1 = new Data_1();
+            Data_2 d2 = new Data_2();   // Compile error
+        }
+    }
+    
+    ```
