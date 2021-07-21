@@ -341,7 +341,7 @@ void println(String x)
 
     class Data_2 {
         int value;
-        // Error 해결 방안 : Data_2() {}
+        // Error 해결 방안 1 : Data_2() {}
         Data_2(int x) { // 매개변수가 있는 생성자
             value = x;
         }
@@ -351,7 +351,28 @@ void println(String x)
         public static void main(String[] args) {
             Data_1 d1 = new Data_1();
             Data_2 d2 = new Data_2();   // Compile error
+        // Error 해결 방안 2 : Data_2 d2 = new Data_2(3); 매개변수 사용.
         }
     }
-    
+    -------------------------------------------
+    class car {
+        String color;
+        String gearType;
+        int door;
+
+        car() {}                            // 기본 생성자
+        car(String c, String g, int d) {    // 매개변수가 있는 생성자
+            color = c;
+            gearType = g;
+            door = d;
+        }
+    }
+    1. 매개변수가 있는 생성자가 있을 경우
+    Car c = new Car("white", "auto", 4);
+
+    2. 없을 경우
+    Car c = new Car();
+    c.color = "white";
+    c.gearType = "auto";
+    c.door = 4;
     ```
