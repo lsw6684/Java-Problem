@@ -10,7 +10,8 @@
 - [호출 스택](#호출-스택)
 - [매개변수](#매개변수)
 - [static 메서드와 인스턴스 메서드](#static-메서드와-인스턴스-메서드)
-- [오버로딩과 오버라이딩](오버로딩과-오버라이딩)
+- [오버로딩과 오버라이딩](#오버로딩과-오버라이딩)
+- [생성자](#생성자)
 
 ## 자바의 특징
 - 객체지향
@@ -326,53 +327,118 @@ void println(String x)
             return a - b;
         }
         ```
-- 생성자 Constructor : 인스턴스가 생성될 때마다 호출되는 **인스턴스 초기화 메서드**로 초기화를 편리하게 합니다.
-    - 이름이 클래스 이름과 같아야 합니다.
-    - 리턴값이 없습니다.(void❌)
-    - 모든 클래스는 반드시 생성자를 가져야 합니다. 
-- 기본 생성자 Default constructor : 매개변수가 없는 생성자를 의미하며 선언되지 않을 경우, 컴파일러가 자동으로 추가합니다. **단, 하나도 없을 때만 자동 추가되며 항상 만들어 주는 것이 좋습니다.**
+## 생성자 
+Constructor, 인스턴스가 생성될 때마다 호출되는 **인스턴스 초기화 메서드**로 초기화를 편리하게 합니다.
+- 이름이 클래스 이름과 같아야 합니다.
+- 리턴값이 없습니다.(void❌)
+- 모든 클래스는 반드시 생성자를 가져야 합니다. 
+
+### 기본 생성자 
+Default constructor, 매개변수가 없는 생성자를 의미하며 선언되지 않을 경우, 컴파일러가 자동으로 추가합니다. **단, 하나도 없을 때만 자동 추가되며 항상 만들어 주는 것이 좋습니다.**
+
+```java
+클래스이름() {} // 기본 생성자
+Point() {}      // Point클래스의 기본 생성자
+-------------------------------------------
+class Data_1 {
+    int value;
+}
+
+class Data_2 {
+    int value;
+    // Error 해결 방안 1 : Data_2() {}
+    Data_2(int x) { // 매개변수가 있는 생성자
+        value = x;
+    }
+}
+
+class main {
+    public static void main(String[] args) {
+        Data_1 d1 = new Data_1();
+        Data_2 d2 = new Data_2();   // Compile error
+    // Error 해결 방안 2 : Data_2 d2 = new Data_2(3); 매개변수 사용.
+    }
+}
+-------------------------------------------
+class car {
+    String color;
+    String gearType;
+    int door;
+
+    car() {}                            // 기본 생성자
+    car(String c, String g, int d) {    // 매개변수가 있는 생성자
+        color = c;
+        gearType = g;
+        door = d;
+    }
+}
+1. 매개변수가 있는 생성자가 있을 경우
+Car c = new Car("white", "auto", 4);
+
+2. 없을 경우
+Car c = new Car();
+c.color = "white";
+c.gearType = "auto";
+c.door = 4;
+```
+### 생성자 this()
+- 생성자에서 다른 생성자를 호출할 때 사용합니다.
+- 다른 생성자 호출시 **첫 줄에서만 사용**합니다.
+```java
+class Car2{
+    String color;
+    String gearType;
+    int door;
+
+    // 1번 생성자
+    Car2() {
+        this("white", "auto", 4);
+    }
+
+    // 2번 생성자
+    Car2(String color) {
+        this(color "auto", 4);
+    }
+
+    // 3번 생성자
+    Car2(String color, String gearType, int door) {
+        this.color = color;
+        this.gearType = gearType;
+        this.door = door;
+    }
+
+    // 1번과 2번이 3번을 호출합니다.
+}
+```
+### 참조변수 this
+- 인스턴스 자신을 가리키는 참조변수입니다.
+- 인스턴스 메서드(생성자 포함)에서 사용가능합니다.
+- 지역변수(lv)와 인스턴스 변수(iv)를 구별할 때 사용합니다.
     ```java
-    클래스이름() {} // 기본 생성자
-    Point() {}      // Point클래스의 기본 생성자
-    -------------------------------------------
-    class Data_1 {
-        int value;
+    Car(String color, String gearType, int door) {
+        // this.color = iv, color = lv
+        this.color = color;
+        this.gearType = gearType;
+        this.door = door;
+        // 동일 클래스 내에서 this는 생략 가능하지만, lv(매개변수)와 이름이 같을 때는 생략 불가능 합니다.
     }
-
-    class Data_2 {
-        int value;
-        // Error 해결 방안 1 : Data_2() {}
-        Data_2(int x) { // 매개변수가 있는 생성자
-            value = x;
-        }
-    }
-
-    class main {
-        public static void main(String[] args) {
-            Data_1 d1 = new Data_1();
-            Data_2 d2 = new Data_2();   // Compile error
-        // Error 해결 방안 2 : Data_2 d2 = new Data_2(3); 매개변수 사용.
-        }
-    }
-    -------------------------------------------
-    class car {
-        String color;
-        String gearType;
-        int door;
-
-        car() {}                            // 기본 생성자
-        car(String c, String g, int d) {    // 매개변수가 있는 생성자
-            color = c;
-            gearType = g;
-            door = d;
-        }
-    }
-    1. 매개변수가 있는 생성자가 있을 경우
-    Car c = new Car("white", "auto", 4);
-
-    2. 없을 경우
-    Car c = new Car();
-    c.color = "white";
-    c.gearType = "auto";
-    c.door = 4;
     ```
+### 참조변수 this와 생성자 this()
+- this : **참조 변수**. 인스턴스 자신을 가리키는 참조변수로 인스턴스의 주소가 저장되어 있으며 모든 인스턴스메서드에 지역변수로, 숨겨진 채로 존재합니다.
+- this(), this(매개변수) : **생성자**. 같은 클래스의 다른 생성자를 호출할 때 사용합니다.
+
+위 두 가지는 완전히 다른 것입니다.
+```java
+class MyMath2 {
+    long a, b;              // this가 생략된 형태로 원래 this.a, this.b
+
+    MyMath2(int a, int b) { // 생성자
+        this.a = a;
+        this.b = b;         // this 생략 불가.
+    }
+
+    long add() {
+        return a + b;       // return this.a + this
+    }
+}
+```
