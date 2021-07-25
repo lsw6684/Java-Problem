@@ -12,6 +12,8 @@
 - [static 메서드와 인스턴스 메서드](#static-메서드와-인스턴스-메서드)
 - [오버로딩과 오버라이딩](#오버로딩과-오버라이딩)
 - [생성자](#생성자)
+- [초기화](#초기화)
+
 
 ## 자바의 특징
 - 객체지향
@@ -442,3 +444,51 @@ class MyMath2 {
     }
 }
 ```
+
+## 초기화
+- 지역변수(lv)는 수동으로 초기화 해야합니다.
+- 멤버변수(ic, cv)는 자동으로 초기화 됩니다.
+    ```java
+    class InitTest {
+        int x;              // iv      
+        int y = x;          // iv
+
+        void method1() {
+            int i;          // lv
+            int j = i;      // Error!! lv를 초기화하지 않고 사용했음.
+        }
+    }
+    ```
+### 멤버변수(iv, cv)의 초기화
+1. 명시적 초기화(=)
+    ```java
+    class Car {
+        int door = 4;               // 기본형 변수의 초기화
+        Engine e = new Engine();    // 참조형 변수의 초기화
+    }
+    // 참조형 변수는 null, 객체주소를 가집니다.
+    ```
+2. 초기화 블럭
+- 인스턴스(iv) 초기화 블럭 : {}
+- 클래스(cv) 초기화 블럭 : static {}
+    ```java
+    class StaticBlockTest {
+        static int[] arr = new int[10]; // 명시적 초기화
+
+        static {
+            for(int i = 0 ; i < arr.length; i++)
+                arr[i] = (int)(Math.random()*10) + 1;
+        }
+    }
+    ```
+3. 생성자(iv 초기화)
+    ```java
+    Car(String color, String gearType, int door) {
+        this.color = color;
+        this.gearType = gearType;
+        this.door = door;
+    }
+    ```
+### 초기화 시점
+- 클래스 변수 : 클래스가 처음 메모리에 올라 갈 때 한 번.
+- 인스턴스 변수 : 인스턴스가 생성될 때 마다(객체를 만들 때 마다)
