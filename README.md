@@ -13,7 +13,9 @@
 - [오버로딩과 오버라이딩](#오버로딩과-오버라이딩)
 - [생성자](#생성자)
 - [초기화](#초기화)
-- [상속](#상속)
+- [클래스 간의 관계](#클래스-간의-관계)
+    - [상속](#상속)
+    - [포함](#포함)
 
 
 ## 자바의 특징
@@ -494,7 +496,8 @@ class MyMath2 {
 - 클래스 변수 : 클래스가 처음 메모리에 올라 갈 때 한 번.
 - 인스턴스 변수 : 인스턴스가 생성될 때 마다(객체를 만들 때 마다)
 
-## 상속
+## 클래스 간의 관계
+### 상속
 - 기존의 클래스로 새로운 클래스를 작성하는 것입니다.(코드의 재사용)
 - 두 클래스를 부모, 자식 관계로 맺어주는 것입니다.
 - **부모클래스 ← 자식클래스**, 상속 표현으로 부모를 가리킵니다.
@@ -507,3 +510,58 @@ class MyMath2 {
 - 자손의 변경은 조상에 영향을 미치지 않습니다.
     <p align="center"><img src="images/inheritance2.png" width="100%"></p>
 - **extends**인 이유 : Parent를 확장하여 Child를 생성한다는 의미입니다.
+
+### 포함
+클래스의 멤버로 참조변수를 선언하는 것입니다.
+```java
+class Circle {
+    int x;      // 원점의 x좌표
+    int y;      // 원점의 y좌표
+    int r;      // Radius
+}
+// 위 코드를 포함 관계로 하면
+class Point {
+    int x;
+    int y;
+}
+
+class Circle {
+    Point c = new Point();
+    int r;      // Radius
+}
+```
+### 클래스 간의 관계 결정
+- 상속관계 : ~은 ~이다. **(is-a)**
+- 포함관계 : ~은 ~을 가지고 있다. **(has-a)**
+    - **원**은 **점**을 가지고 있다.
+
+```java
+class Inheritance {
+    int x;
+}
+class Child extends Inheritance {
+    int r;
+}
+
+class Composite {
+    int x;
+}
+class CompositeTest {
+    Composite c = new Composite();
+    int r;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Inheritance Test
+        Child a = new Child();
+        System.out.println(a.x);
+        System.out.println(a.r);
+        
+        // Composite Test
+        CompositeTest b = new CompositeTest();
+        System.out.println(b.c.x);
+        System.out.println(b.r);
+    }
+}
+```
