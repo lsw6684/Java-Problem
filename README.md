@@ -14,11 +14,16 @@
     - [오버로딩 Overloading](#오버로딩-overloading)
     - [오버라이딩 Overriding](#오버라이딩-overriding)
 - [생성자](#생성자)
+    - [기본 생성자](#기본-생성자)
+    - [생성자 this()](#생성자-this)
+    - [참조변수 this](#참조변수-this)
+    - [참조변수 this와 생성자 this](#참조변수-this와-생성자-this)
+    - [참조변수 super](#참조변수-super)
+
 - [초기화](#초기화)
 - [클래스 간의 관계](#클래스-간의-관계)
     - [상속](#상속)
     - [포함](#포함)
-
 
 ## 자바의 특징
 - 객체지향
@@ -506,6 +511,41 @@ class MyMath2 {
 }
 ```
 
+### 참조변수 Super
+- 객체 자신을 가리키는 참조변수로 this와 비슷합니다. 
+- 인스턴스 메서드(생성자)내에서만 존재하여 static메서드 내에서 사용 불가합니다.
+- this가 lv와 iv 구별에 사용된다면, **super는 조상 멤버를 자신의 멤버와 구별할 때 사용합니다.**
+    ```java
+    class Ex7_2 {
+        public static void main(String args[]) {
+            Child c = new Child();
+            c.method();
+
+            Child2 c2 = new Child2();
+            c2.method();
+        }
+    }
+
+    class Parent { int x = 10;}     // super.x
+    class Child extends Parent {
+        int x = 20;
+        void method() {
+            System.out.println("x = " + x);             // 20, 가까운 x
+            System.out.println("this.x = " + this.x);   // 20
+            System.out.println("super.x = " + super.x); // 10
+        }
+    }
+
+    class Parent2 { int x = 10;}    // super.x와 this.x 둘 다 가능
+    class Child2 extends Parent2 {
+        void method() {
+            System.out.println("x = " + x);             // 10
+            System.out.println("this.x = " + this.x);   // 10
+            System.out.println("super.x = " + super.x); // 10
+        }
+    }
+    ```
+    
 ## 초기화
 - 지역변수(lv)는 수동으로 초기화 해야합니다.
 - 멤버변수(ic, cv)는 자동으로 초기화 됩니다.
@@ -623,3 +663,4 @@ public class Main {
     }
 }
 ```
+
