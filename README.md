@@ -11,6 +11,8 @@
 - [매개변수](#매개변수)
 - [static 메서드와 인스턴스 메서드](#static-메서드와-인스턴스-메서드)
 - [오버로딩과 오버라이딩](#오버로딩과-오버라이딩)
+    - [오버로딩 Overloading](#오버로딩-overloading)
+    - [오버라이딩 Overriding](#오버라이딩-overriding)
 - [생성자](#생성자)
 - [초기화](#초기화)
 - [클래스 간의 관계](#클래스-간의-관계)
@@ -332,6 +334,62 @@ void println(String x)
             return a - b;
         }
         ```
+### 오버라이딩 Overriding
+상속받은 조상의 메서드를 자신에 맞게 변형합니다. 메서드 오버라이딩이라 할 수 있으며 글자 그대로 *덮어쓰는 것*입니다.
+```java
+class Point {           // 2차원
+    int x;
+    int y;
+
+    String getLocation() {
+        return "x : " + x + ", y : " + y;
+    }
+}
+
+class Point3D extends Point {
+    int z;
+
+    // 선언부는 변경 불가하며 내용만을 변경합니다.
+    // 조상의 getLocation을 오버라이딩
+    String getLocation() {
+        return "x : " + x + ", y : " + y + ", z : " + z;
+    }
+}
+
+public class OverrideTest {
+    public static void main(String[] args) {
+        MyPoint3D p = new MyPoint3D();
+        p.x = 3;
+        p.y = 5;
+        p.z = 7;
+        System.out.println(p.getLocation());
+        // x : 3, y : 5, z : 7
+    }
+}
+```
+- 오버라이딩 조건 3가지
+1. 선언부가 조상 클래스의 메서드와 일치해야 합니다.
+2. 접근 제어자를 조상 클래스의 메서드보다 좁은 범위로 변경할 수 없습니다.
+3. 예외는 조상 클래스의 메서드보다 많이 선언할 수 없습니다.
+
+### 오버로딩 vs 오버라이딩
+- 오버로딩은 기존에 없는 새로운 메서드(이름이 같은)를 정의하는 것입니다.(new)
+    - 상속과 관계가 없습니다.
+- 오버라이딩은 상속받은 메서드의 내용을 변경하는 것입니다.(change, modify)
+    ```java
+    class Parent {
+        void parentMethod() {}
+    }
+
+    class Child extends Parent {
+        void parentMethod() {}          // 오버라이딩 : 조상의 메서드를 자손에서 변경
+        void parentMethod(int i) {}     // 오버로딩 : 이름이 같은 메서드를 매개변수만 변경하여 정의
+        void childMethod() {}           // 메서드 정의
+        void childMethod() {int i} {}   // 오버로딩 : 이름만 같은 메서드를 생성
+        void childMethod() {}           // Error!! : 중복정의 
+    }
+    ```
+
 ## 생성자 
 Constructor, 인스턴스가 생성될 때마다 호출되는 **인스턴스 초기화 메서드**로 초기화를 편리하게 합니다.
 - 이름이 클래스 이름과 같아야 합니다.
