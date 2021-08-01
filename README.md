@@ -19,6 +19,7 @@
     - [참조변수 this](#참조변수-this)
     - [참조변수 this와 생성자 this](#참조변수-this와-생성자-this)
     - [참조변수 super](#참조변수-super)
+    - [조상의 생성자 super()](#조상의-생성자-super)
 
 - [초기화](#초기화)
 - [클래스 간의 관계](#클래스-간의-관계)
@@ -545,7 +546,59 @@ class MyMath2 {
         }
     }
     ```
-    
+### 조상의 생성자 super()
+- 조상의 생성자를 호출할 때 사용합니다.
+- 조상의 멤버는 조상의 생성자를 호출해서 초기화합니다.
+    ```java
+    class Point {
+        int x, y;
+
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    Point3D(int x, int y, int z) {
+        super(x,y);     // 조상클래스의 생성자 Point(int x, int y)를 호출
+        this.z = z;     // 자신의 멤버를 초기화
+    }
+    // 자손클래스가 초기화할 수 있지만, 올바른 방법은 아닙니다.
+    ```
+- 생성자의 첫 줄에는 **반드시** 생성자를 호출합니다. 그렇지 않으면 컴파일러가 생성자의 첫 줄에 super();를 삽입합니다. 아래는 삽입을 하지 않은 예입니다.
+    ```java
+    class Point {
+        int x;
+        int y;
+
+        Point() {
+            this(0, 0);
+        }
+
+        Point(int x, int y) {
+            this.x = x;     
+            this.y = y;
+        }
+    }
+    // 컴파일러가 자동으로 super(); 생성. 
+    class Point extends Object {    // 조상의 기본 생성자 상속?
+        int x;
+        int y;
+
+        Point() {
+            this(0, 0);
+        }
+
+        Point(int x, int y) {
+            super();        // Object 생성
+            this.x = x;
+            this.y = y;
+        }
+    }
+    // 즉, 첫 줄에 다른 생성자를 호출해야 예상치 못한 변화가 없습니다.
+    // 기본 생성자 작성은 필수❗
+    ```
+
 ## 초기화
 - 지역변수(lv)는 수동으로 초기화 해야합니다.
 - 멤버변수(ic, cv)는 자동으로 초기화 됩니다.
