@@ -25,6 +25,7 @@
 - [클래스 간의 관계](#클래스-간의-관계)
     - [상속](#상속)
     - [포함](#포함)
+- [패키지](#패키지)
 
 ## 자바의 특징
 - 객체지향
@@ -716,4 +717,34 @@ public class Main {
     }
 }
 ```
+## 패키지
+- 서로 관련된 클래스들의 묶음입니다.
+- 클래스는 클래스 파일(*.class), 패키지는 폴더, 하위 패키지는 하위 폴더입니다.
+- 클래스의 실제 이름(full name)은 패키지를 포함합니다.(String의 실제 이름 : java.lang.String)
+- rt.jar는 클래스들을 압축한 파일(JDK설치경로\jre\lib에 위치), rt = runtime, jar = 클래스 파일 묶음(압축).
+    - ***java9부터 rt.jar이 제외되고 module개념이 도입됩니다.***
+
+### 패키지 선언
+- 소스파일의 첫 번째 문장으로 단 한번 선언합니다.
+- 같은 소스파일의 클래스들은 모두 같은 패키지에 속하게 됩니다.
+- 패키지 선언이 없으면 이름없는 패키지에(default package) 속하게 됩니다.
+    ```java
+    package com.code.book;
+
+    public class PackageTest {
+        public static void main(String[] args) {
+            System.out.println("Hello, World");
+        }
+    }
+    ```
+    - bin폴더 - 컴파일된 클래스 파일(*.class)이 있는 곳
+        - CLI로 실행 시 bin 폴더까지 이동해야 하는데, 이러한 사항을 개선하기 위해 **classpath**가 존재합니다.
+    - src폴더 - 소스 파일(*.java)이 있는 곳
+
+
+
+
+
+
+
 
