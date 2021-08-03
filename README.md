@@ -26,7 +26,7 @@
     - [상속](#상속)
     - [포함](#포함)
 - [패키지](#패키지)
-
+- [import](#import)
 ## 자바의 특징
 - 객체지향
 - 자동 메모리 관리
@@ -741,10 +741,58 @@ public class Main {
         - CLI로 실행 시 bin 폴더까지 이동해야 하는데, 이러한 사항을 개선하기 위해 **classpath**가 존재합니다.
     - src폴더 - 소스 파일(*.java)이 있는 곳
 
+## import
+- 클래스를 사용할 때 패키지 이름을 생략할 수 있습니다.
+    ```java
+    class ImportTest {
+        java.util.Date today = new java.util.Date();
+    }
+    ```
+    ```java
+    import java.util.Date;
+    class ImportTest {
+        Date today = new Date();
+    }
+    // 이클립스 기준 import 단축키 : ctrl + shift + o
+    ```
+ - java.lang패키지의 클래스는 import하지 안혹도 사용할 수 있습니다.
+    - String, Object, System, Thread... `import java.lang.*;` - 생략 가능.
+- 선언 방법
+    ```java
+    package com.code.book;
 
+    // package와 class 사이에 위치합니다.
+    import 패키지명.클래스명;
+    import 패키지명.*;
 
+    public class PackageTest{
+        public static void main(String[] args) {
 
+        }
+    }
+    ```
+    ```java
+    import java.util.*;
+    import java.text.*;
+    를
+    import java.*; 로는 불가능합니다.
+    위 문장은 java폴더의 모든 클래스를 의미하며 패키지는 포함할 수 없습니다.
+    ```
+    ```java
+    import java.sql.*;      // java.sql.Date
+    import java.util.*;     // java.util.Date
+    // 이름이 같은 클래스가 속한 두 패키지를 import할 때는 클래스 앞에 패키지명을 붙여야 합니다.
+        java.util.Date today - new java.util.Date();    
+    ```
+### static import
+- static멤버를 사용할 때 클래스 이름을 생략할 수 있게 해줍니다.
+    ```java
+    import static java.lang.Integer.*;  // Integer클래스의 모든 static 메서드
+    import static java.lang.Math.random;// import 시 괄호 없이. 사용 시 Math.random().
+    import static java.lang.System.out; // System.out을 out만으로 참조가능.
 
-
+    System.out.println(Math.random());
+    out.println(random());
+    ```
 
 
