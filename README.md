@@ -31,6 +31,7 @@
     - [static](#static)
     - [final](#final)
     - [abstract](#abstract)
+- [접근 제어자 access modifier](#접근-제어자-access-modifier)
 
 
 ## 자바의 특징
@@ -852,5 +853,12 @@ public class Main {
         abstract void move();       // 추상 메서드(구현부가 없는 메서드)
     }
     ```
+## 접근 제어자 access modifier
+- private : 같은 클래스 내에서만 접근 가능합니다.
+- (default) : (없음)같은 패키지 내에서만 접근이 가능합니다.
+- protected : 같은 패키지 내에서 + 다른 패키지의 자손 클래스에서 접근 가능합니다.
+- public : 접근 제한이 전혀 없습니다.
+<p align="center"><img src="images/cs2.png" width="60%"></p>
+
 
 
