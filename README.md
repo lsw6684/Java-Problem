@@ -20,7 +20,6 @@
     - [참조변수 this와 생성자 this](#참조변수-this와-생성자-this)
     - [참조변수 super](#참조변수-super)
     - [조상의 생성자 super()](#조상의-생성자-super)
-
 - [초기화](#초기화)
 - [클래스 간의 관계](#클래스-간의-관계)
     - [상속](#상속)
@@ -32,7 +31,7 @@
     - [final](#final)
     - [abstract](#abstract)
 - [접근 제어자 access modifier](#접근-제어자-access-modifier)
-
+- [캡슐화](#캡슐화)
 
 ## 자바의 특징
 - 객체지향
@@ -860,5 +859,27 @@ public class Main {
 - public : 접근 제한이 전혀 없습니다.
 <p align="center"><img src="images/cs2.png" width="60%"></p>
 
+## 캡슐화
+접근 제어자를 이용하여 외부로부터 데이터를 보호하며 데이터를 감춥니다.
+```java
+class Time {
+    private int hour;
+    private int minute;
+    private int second;
+    
+    public void setHour(int hour) {
+        if(hour < 0 || hour > 23) return;
 
+        this.hour = hour;
+    }
+    public int getHour() { return hour; };
+}
 
+public class TimeTest {
+    public static void main(String[] args) {
+        Time t = new Time();
+        t.setHour(21);      // 바뀜.
+        t.setHour(100);     // 안 바뀜.
+    }
+}
+```
