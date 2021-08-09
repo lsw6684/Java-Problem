@@ -32,6 +32,8 @@
     - [abstract](#abstract)
 - [접근 제어자 access modifier](#접근-제어자-access-modifier)
 - [캡슐화](#캡슐화)
+- [다형성](#다형성)
+- [참조변수의 형변환](#참조변수의-형변환)
 
 ## 자바의 특징
 - 객체지향
@@ -883,3 +885,72 @@ public class TimeTest {
     }
 }
 ```
+
+## 다형성
+- Polymorphism으로 여러 가지 형태를 가질 수 있는 능력입니다.
+- **조상 타입 참조 변수로 자손 타입 객체를 다루는 것입니다.**
+    ```java
+    class Tv {
+        boolean power;      // 전원상태(on/off)
+        int channel;        // 채널
+
+        void power()        { power = !power;}
+        void channerUp()    { ++channel;}
+        void channelDown()  { --channel;}
+    }
+
+    class SmartTv extends Tv {
+        String text;
+        void caption()  {}
+    }
+
+    // 여기서 하위 코드가 가능.
+    Tv t = new SmartTv();   // 타입 불일치 OK    
+    ```
+- 객체와 참조변수의 타입이 일치할 때와 일치하지 않을 때의 차이
+    ```java
+    SmartTv s = new SmartTv();  // 그대로 사용 가능
+    Tv      t = new SmartTv();  // 일부만 사용 가능
+
+    // But
+
+    Tv      t = new SmartTv();  // 허용
+    SmartTv s = new Tv();       // Error!! 자손 타입의 참조변수로 조상 타입의 객체를 가리킬 수 없습니다. - 없는 것을 호출하는 논리.
+    ```
+1. 참조변수의 타입은 보통 인스턴스의 타입과 일치할 수 있지만, 다형성 개념을 도입하면 그렇지 않을 수 있습니다.
+2. 참조변수가 조상타입일 때와 자손타입일 때의 차이는 사용할 수 있는 멤버의 개수입니다.
+3. 자손타입의 참조변수로 조상타입의 객체를 가리킬 순 없습니다.
+
+## 참조변수의 형변환
+- 사용할 수 있는 멤버의 개수를 조절합니다.
+- 조상 자손 관계의 참조변수는 서로 형변환 가능합니다.(형제 관계는 불가능.)
+    ```java
+    class Car {
+        String color;
+        int door;
+
+        void driver() {
+            System.out.println("drive~");
+        }
+
+        void stop() {
+            System.out.println("stop~");
+        }
+    }
+
+    class FireEngine extends Car {
+        void water() {
+            System.out.println("water~");
+        }
+    }
+    // 멤버 5개
+    FireEngine f = new FireEngine();
+
+    // 멤버 4개
+    Car c = (Car)f;                     // OK. 조상인 Car타입으로 형변환 (생략가능)
+    
+    // 멤버 5개
+    FireEngine f2 = (FireEngine)c;      // OK. 자손인 FireEngine타입으로 형변환(생략불가)
+    
+    Ambulance a = (Ambulance)f;         // Error! 상속관계가 아닌 클래스 간의 형변환 불가.
+    ```
