@@ -34,6 +34,7 @@
 - [캡슐화](#캡슐화)
 - [다형성](#다형성)
 - [참조변수의 형변환](#참조변수의-형변환)
+    - [instanceof 연산자](#instanceof-연산자)
 
 ## 자바의 특징
 - 객체지향
@@ -953,4 +954,25 @@ public class TimeTest {
     FireEngine f2 = (FireEngine)c;      // OK. 자손인 FireEngine타입으로 형변환(생략불가)
     
     Ambulance a = (Ambulance)f;         // Error! 상속관계가 아닌 클래스 간의 형변환 불가.
+    ```
+### instanceof 연산자
+참조변수의 형변환 가능 여부(조상과 자손 사이만 가능)를 조사하여 true/false를 반환하며 형변환 전에 반드시 검사를 해야합니다.
+- 형변환 순서
+1. **형변환 확인(instanceof)**
+2. 형변환
+    ```java
+    void doWork(Car c) {
+        if (c instanceof FireEngine) {      // 형변환이 가능한지 확인
+            FireEngine fe = (FireEngine) c; // 형변환
+            fe.water();
+        }
+    }
+    ----------------- 생략 -------------------
+    FireEngine fe = new FireEngine();
+    System.out.println(fe instanceof Object);       // true
+    System.out.println(fe instanceof Car);          // true
+    System.out.println(fe instanceof FireEngine);   // true
+
+    Object  obj = (Object)fe;        // OK
+    Car     c   = (Car)fe;;          // OK
     ```
