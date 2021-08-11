@@ -33,6 +33,7 @@
 - [접근 제어자 access modifier](#접근-제어자-access-modifier)
 - [캡슐화](#캡슐화)
 - [다형성](#다형성)
+    -[매개변수의 다형성](#매개변수의-다형성)
 - [참조변수의 형변환](#참조변수의-형변환)
     - [instanceof 연산자](#instanceof-연산자)
 
@@ -921,6 +922,47 @@ public class TimeTest {
 1. 참조변수의 타입은 보통 인스턴스의 타입과 일치할 수 있지만, 다형성 개념을 도입하면 그렇지 않을 수 있습니다.
 2. 참조변수가 조상타입일 때와 자손타입일 때의 차이는 사용할 수 있는 멤버의 개수입니다.
 3. 자손타입의 참조변수로 조상타입의 객체를 가리킬 순 없습니다.
+
+### 매개변수의 다형성
+- 참조형 매개변수는 메서드 호출 시, **자신과 같은 타입 또는 자손타입의 인스턴스를 넘겨줄 수 있습니다.**
+- 장점
+1. 다형적 매개변수
+2. 하나의 배열로 여러 종류 객체 다루기
+    ```java
+    // 부모
+    class Product {
+        int price;
+        int bonusPoint;
+    }
+
+    // 자손
+    class Tv extends Product {}
+    class Computer extends Product {}
+    class Audio extends Product {}
+
+    class Buyer {   // 물건 사는 사람
+        int money = 1000;
+        int bonusPoint = 0;
+
+        // 오버로딩
+        void buy(Tv t) {
+            money -= t.price;
+            bonusPoint += t.bonusPoint;
+        }
+        void buy(Computer c) {
+            money -= c.price;
+            bonusPoint += c.bonusPoint;
+        }
+        -----------------------------------
+        // 다형성, 조상을 상속하면 오버로딩과 같은 코딩을 하지 않아도, 여러 타입의 사용이 가능합니다.
+        void buy(Product p) {
+            money -= p.price;
+            bonusPoint += p.bonusPoint;
+        }
+
+    }
+
+    ```
 
 ## 참조변수의 형변환
 - 사용할 수 있는 멤버의 개수를 조절합니다.
