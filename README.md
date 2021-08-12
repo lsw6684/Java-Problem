@@ -963,6 +963,19 @@ public class TimeTest {
     }
 
     ```
+### 여러 종류의 객체를 배열로 다루기
+- 조상타입의 배열에 자손들의 객체를 담을 수 있습니다.
+    ```java
+    Product p1 = new tv();
+    Product p2 = new Computer();
+    Product p3 = new Audio();
+    ----------------------------
+    // 위 코드를 다형성으로 배열에 담기
+    Product p[] = new Product[3];
+    p[0] = new Tv();
+    p[1] = new Computer();
+    p[2] = new Audio();
+    ```
 
 ## 참조변수의 형변환
 - 사용할 수 있는 멤버의 개수를 조절합니다.
