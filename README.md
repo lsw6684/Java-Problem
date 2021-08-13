@@ -36,6 +36,7 @@
     -[매개변수의 다형성](#매개변수의-다형성)
 - [참조변수의 형변환](#참조변수의-형변환)
     - [instanceof 연산자](#instanceof-연산자)
+- [추상 클래스](#추상-클래스)
 
 ## 자바의 특징
 - 객체지향
@@ -856,6 +857,7 @@ public class Main {
         abstract void move();       // 추상 메서드(구현부가 없는 메서드)
     }
     ```
+- [추상 클래스](#추상-클래스)
 ## 접근 제어자 access modifier
 - private : 같은 클래스 내에서만 접근 가능합니다.
 - (default) : (없음)같은 패키지 내에서만 접근이 가능합니다.
@@ -1031,3 +1033,40 @@ public class TimeTest {
     Object  obj = (Object)fe;        // OK
     Car     c   = (Car)fe;;          // OK
     ```
+
+## 추상 클래스
+미완성 설계도로 미완성 메서드를 가지는 클래스입니다.
+```java
+abstract class Player {
+    abstract void play(int pos);    // 추상 메서드(몸통{}없는 미완성)
+    abstract void stop();
+}   // 몸통이 없기 때문에 abstract를 붙입니다.
+```
+- 다른 클래스 작성에 도움을 주기 위한 것으로 인스턴스 생성이 불가능합니다.
+- 상속을 통해 추상 메서드를 완성해야 인스턴스 생성이 가능합니다.
+    ```java
+    class AudioPlayer extends Player {
+        void play(int pos) {}   // 추상 메서드 구현.
+        void stop() {}          // 추상 메서드 구현.
+    }
+    ```
+### 추상 메서드
+미완성 메서드로 구현부가 없습니다. `abstract 리턴타입 메서드이름();`
+- 꼭 필요하지만 자손마다 다르게 구현될 것으로 예상되는 경우 사용합니다.
+```java
+abstract class player {
+    abstract void play(int pos);
+    abstract void stop();
+}
+
+// 구현부 완벽
+class AudioPlayer extends Player {
+    void play(int pos) {}
+    void stop(){}
+    }
+
+// 구현되지 않은 부분이 있기에 abstract
+abstract class AbstractPlayer extends Player {
+    void play(int pos) {}
+}
+```
