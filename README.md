@@ -37,6 +37,7 @@
 - [참조변수의 형변환](#참조변수의-형변환)
     - [instanceof 연산자](#instanceof-연산자)
 - [추상 클래스](#추상-클래스)
+- [인터페이스](#인터페이스)
 
 ## 자바의 특징
 - 객체지향
@@ -1068,5 +1069,59 @@ class AudioPlayer extends Player {
 // 구현되지 않은 부분이 있기에 abstract
 abstract class AbstractPlayer extends Player {
     void play(int pos) {}
+}
+```
+
+## 인터페이스
+프로그래밍 관점으로, 추상 메서드의 집합입니다. **구현된 것이 없는 설계도로 모든 멤버가 public**입니다.
+
+### 인터페이스와 추상클래스의 차이
+추상클래스는 생성자, 멤버 변수 등이 있는 미완성 클래스지만, 인터페이스는 추상 메서드의 집합입니다. 즉, 상대적으로 아무 것도 없는 것이라 할 수 있습니다.
+- 변수는 가질 수 없으며, 예외 없이 모든 멤버는 public입니다.
+    ```java
+    interface 인터페이스 이름 {
+        public static final 타입 상수이름 = 값(상수);
+        public abstract 메서드 이름(매개변수목록);
+    }
+    ```
+- 인터페이스의 모든 메서드는 public이며 abstract이기 때문에 일부, 혹은 전부 **생략이 가능**합니다. (*상수는 public static final*)
+    ```java
+    interface PlayingCard {
+        public static final int SPADE = 4;
+        final int DIAMOND = 3;  // public static final int DIAMOND = 3;
+        static int HEART = 2;   // public static final int HEART = 2;
+        int CLOVER = 1;         // public static final int CLOVER = 1;
+
+        public abstract String getCardNumber();
+        String getCardKind();   // public abstract String getCardKind();
+    }
+    ```
+- 인터페이스의 조상은 인터페이스만 가능하며 다중상속이 가능합니다(**조상이 여럿**). 추상메서드는 충돌해도 문제 없습니다.
+    ```java
+    interface Fightable extends Movable, Attackable {}
+    interface Movable {
+        void move(int x, int y);
+    }
+    interface Attackable {
+        void attack(Unit u);
+    }
+    ```
+### 인터페이스의 구현
+인터페이스에 정의된 추상 메서드를 완성합니다.
+```java
+class 클래스이름 impliments 인터페이스이름 {
+    // 구현
+}
+
+class Fighter implements Fightable {
+    public void move(int x, int y) {}
+    public void attack(Unit u) {}
+}
+
+// 일부만 구현하는 경우, 클래스 앞에 abstract를 붙여야 합니다.
+abstract class Fighter implements Fightable {
+    public void move(int x, int y) {
+
+    }
 }
 ```
