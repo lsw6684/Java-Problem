@@ -1125,3 +1125,24 @@ abstract class Fighter implements Fightable {
     }
 }
 ```
+
+### 인터페이스를 이용한 다형성
+- 인터페이스도 좁은 개념으로 **구현 클래스의 부모**라고 할 수 있습니다.*(엄밀히는 X)*
+    ```java
+    class Fighter extends Unit implements Fightable {
+        public void move(int x, int y) {}
+        public void attack(Fightable f) {}
+    }
+    ----------------생략------------------
+    Unit        u = new Fighter();  // 조상
+    Fightable   f = new Fighter();  // 인터페이스. 단, Fighter 멤버가 아무리 많아도 Fightable 에 있는 멤버만 사용 가능.
+    ```
+- 인터페이스를 메서드의 리턴타입으로 지정할 수 있습니다.
+    ```java
+    Fightable method() {
+        Fighter f = new Fighter();
+        return f;
+        // 상위 두 문장을 한 문장으로 표현하면
+        return new Fighter();
+    }
+    ```
