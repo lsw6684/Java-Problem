@@ -38,6 +38,9 @@
     - [instanceof 연산자](#instanceof-연산자)
 - [추상 클래스](#추상-클래스)
 - [인터페이스](#인터페이스)
+- [메서드](#메서드)
+    - [hashCode()](#hashcode)
+    - [toString()](#tostring)
 
 ## 자바의 특징
 - 객체지향
@@ -1146,3 +1149,12 @@ abstract class Fighter implements Fightable {
         return new Fighter();
     }
     ```
+## 메서드
+### hashCode()
+객체의 해시코드를 반환하는 메서드입니다. Object클래스에 속하며 객체의 주소를 int로 변환해서 반환합니다.
+- equals()를 오버라이딩 하면, hashCode()도 오버라이딩 합니다. equals()의 결과가 true라는 것은 **두 객체의 해시코드가 같다**는 것이기 때문입니다.
+
+### toString()
+객체를 문자열(String)로 변환합니다.
+
+
