@@ -41,7 +41,8 @@
 - [메서드](#메서드)
     - [hashCode()](#hashcode)
     - [toString()](#tostring)
-
+- [인터페이스](#인터페이스)
+    - [Comparator, Comparable](#comparator-comparable)
 ## 자바의 특징
 - 객체지향
 - 자동 메모리 관리
@@ -1158,3 +1159,49 @@ abstract class Fighter implements Fightable {
 객체를 문자열(String)로 변환합니다.
 
 
+## 인터페이스
+### Comparator, Comparable
+객체 정렬에 필요한 메서드(정렬기준 제공)를 정의한 인터페이스입니다.
+- Comparable : 기본 정렬 기준을 구현하는 데 사용합니다.
+    ```java
+    public interface Comparator {
+        int compare(Object o1, Object o2);      // o1, o2 두 객체를 비교
+        // 양수 : 왼쪽이 크다.
+        // 0 : 같다.
+        // 음수 : 오른쪽이 크다.
+        boolean equals(Object obj);             // equals를 오버라이딩
+    }
+    ```
+- Comparator : 기본 정렬 기준 외에 다른 기준으로 정렬하고자 할 때 사용
+    ```java
+    public interface Comparable {
+        int compareTo(object o);                // 주어진 객체(o)를 자신(this)과 비교.
+    }
+    ```
+- compare()와 compareTo()는 두 객체의 비교 결과를 반환하도록 작성합니다.
+    ```java
+    static void sort(Object[] a)    // 객체 배열에 저장된 객체가 구현한, Comparable에 의한 정렬
+    static void sort(Object[] a, Comparator c)  // 지정한 Comparator에 의한 정렬 - sort(대상, 기준)
+    ```
+- 대소문자 구분 없이 정렬
+    ```java
+    String[] strArr = {"cat", "Dog", "lion", "Apple"};
+    Arrays.sort(strArr, String.CASE_INSENSITIVE_ORDER); 
+    ```
+- 역순 정렬
+    ```java
+    String[] strArr = {"cat", "Dog", "lion", "Apple"};
+	    Arrays.sort(strArr, new Comparator<String>() {
+	    	public int compare(String o1, String o2) {
+                // 둘 중 한 방법 선택.
+                return o1.compareTo(o2) * -1;
+                return o2.compareTo(co1);	    	}
+	    });
+
+            }
+        }
+    }
+    ...
+    String[] strArr = {"cat", "Dog", "lion", "Apple"};
+    Arrays.sort(strArr, new Descending()); 
+    ```
