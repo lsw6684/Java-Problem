@@ -1195,7 +1195,7 @@ abstract class Fighter implements Fightable {
 	    	public int compare(String o1, String o2) {
                 // 둘 중 한 방법 선택.
                 return o1.compareTo(o2) * -1;
-                return o2.compareTo(co1);	    	}
+                return o2.compareTo(o1);	    	}
 	    });
 
             }
