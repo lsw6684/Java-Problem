@@ -43,6 +43,9 @@
     - [toString()](#tostring)
 - [인터페이스](#인터페이스)
     - [Comparator, Comparable](#comparator-comparable)
+- [HashSet](#hashset)
+
+
 ## 자바의 특징
 - 객체지향
 - 자동 메모리 관리
@@ -1205,3 +1208,10 @@ abstract class Fighter implements Fightable {
     String[] strArr = {"cat", "Dog", "lion", "Apple"};
     Arrays.sort(strArr, new Descending()); 
     ```
+
+## HashSet
+Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. 
+- LinkedHashSet <br />
+    HashSet에서 순서를 유지하기 위해 사용.
+- TreeSet <br />
+    범위 검색과 정렬에 유리한 컬렉션 클래스. 데이터가 많을 수록 HashSet보다 데이터 추가/삭제에 시간이 오래 걸립니다.
