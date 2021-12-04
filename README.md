@@ -1211,6 +1211,24 @@ abstract class Fighter implements Fightable {
 
 ## HashSet
 Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. 
+- 주요 메서드
+    ```java 
+    boolean add(Object o) : 추가
+    boolean addAll(Collection c) : 합집합
+    boolean remove(Object o) : 삭제
+    boolean removeAll(Collection c) : 교집합
+    boolean retainAll(Collection c) : 조건부 삭제
+    boolean contains(Object o) : 포함 여부.
+    boolean containsAll(Collection c) : 컬렉션에 담긴 여러 객체가 모두 포함되어 있는지.
+    void clear() : 모두 삭제
+    boolean isEmpty() : 비었는지?
+    int size() : 저장된 객체수
+    Object[] toArray() : 객체 배열로 반환
+    Object[] toArray(Object[] a) : 객체 배열로 반환
+    Iterator iterator() : 컬렉션의 요소를 읽는 이터레이터.
+    ```
+
+
 - LinkedHashSet <br />
     HashSet에서 순서를 유지하기 위해 사용.
 - TreeSet <br />
