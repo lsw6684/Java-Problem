@@ -42,6 +42,7 @@
     - [hashCode()](#hashcode)
     - [toString()](#tostring)
 - [인터페이스](#인터페이스)
+    - [Iterator](#iterator)
     - [Comparator, Comparable](#comparator-comparable)
 - [HashSet](#hashset)
 
@@ -1163,6 +1164,16 @@ abstract class Fighter implements Fightable {
 
 
 ## 인터페이스
+### Iterator
+컬렉션에 저장된 데이터를 접근하는 데 사용되는 인터페이스입니다.
+- 주요 메서드
+    - 
+    ```java
+    boolean hasNext() : 읽어 올 요소가 남아있는지 확인하고 있으면 true, 없으면 false 반환.
+    Object next() : 다음 요소를 읽어 옵니다. 일반적으로 hasNext()를 이용하여 읽을 요소가 있는지 확인하는 것이 안전합니다.
+    ```
+
+
 ### Comparator, Comparable
 객체 정렬에 필요한 메서드(정렬기준 제공)를 정의한 인터페이스입니다.
 - Comparable : 기본 정렬 기준을 구현하는 데 사용합니다.
