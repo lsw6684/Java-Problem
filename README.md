@@ -1165,13 +1165,27 @@ abstract class Fighter implements Fightable {
 
 ## 인터페이스
 ### Iterator
-컬렉션에 저장된 데이터를 접근하는 데 사용되는 인터페이스입니다.
+컬렉션에 저장된 데이터를 접근하는 데 사용되는 인터페이스입니다. (Enumeration의 신버전)
 - 주요 메서드
     - 
     ```java
     boolean hasNext() : 읽어 올 요소가 남아있는지 확인하고 있으면 true, 없으면 false 반환.
     Object next() : 다음 요소를 읽어 옵니다. 일반적으로 hasNext()를 이용하여 읽을 요소가 있는지 확인하는 것이 안전합니다.
+
+    List list = new ArrayList();
+    Iterator it = list.iterator();
+
+    while(it.hasNext()) {
+        System.out.println(it.next());
+    }
     ```
+- **Map에는 iterator()가 없습니다.** ketSet(), entrySet(), values()를 호출하고 set이나 collection을 얻은 후, 해당 메서드의 iterator를 사용해야 합니다.
+    ```java
+    Map map = new HashMap();
+    ...
+    Iterator it = map.entrySet().iterator();
+    ```
+
 
 
 ### Comparator, Comparable
