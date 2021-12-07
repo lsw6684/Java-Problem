@@ -45,7 +45,7 @@
     - [Iterator](#iterator)
     - [Comparator, Comparable](#comparator-comparable)
 - [HashSet](#hashset)
-
+- [TreeSet](#treeset)
 
 ## 자바의 특징
 - 객체지향
@@ -338,7 +338,7 @@ class MyMath2 {
 ```java
 void println()
 void println(boolean x)
-void println(char x)
+void println(char x)ㅠ 
 void println(char[] x)
 void println(double x)
 void println(float x)
@@ -1235,7 +1235,9 @@ abstract class Fighter implements Fightable {
     ```
 
 ## HashSet
-Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. 
+Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br />
+객체를 저장하기 전에 기존에 같은 객체가 있는지 확인합니다. **(없으면 저장, 있으면 저장x)**
+- HashSet은 equals(), hashCode()로 값을 비교합니다.
 - 주요 메서드
     ```java 
     boolean add(Object o) : 추가
@@ -1258,3 +1260,13 @@ Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**.
     HashSet에서 순서를 유지하기 위해 사용.
 - TreeSet <br />
     범위 검색과 정렬에 유리한 컬렉션 클래스. 데이터가 많을 수록 HashSet보다 데이터 추가/삭제에 시간이 오래 걸립니다.
+
+## TreeSet
+이진 탐색 트리(Binary search tree)로 구현되어 있으며, 정렬에 유리합니다. 모든 노드가 0 ~ 2개의 하위 노드를 갖으며 부모 왼쪽 자식은 보다 작고, 부모 오른쪽 자식은 보다 큽니다.
+- TreeSet은 compare()를 호출하여 값을 비교합니다.
+- 단점 : 데이터가 많아질 수록 추가/삭제 시간이 오래 걸립니다.
+- 주요 생성자와 메서드
+    ```java
+    기본 메서드는 Collection과 동일합니다.
+    ```
+
