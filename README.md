@@ -1264,6 +1264,7 @@ Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br 
 ## TreeSet
 이진 탐색 트리(Binary search tree)로 구현되어 있으며, 정렬에 유리합니다. 모든 노드가 0 ~ 2개의 하위 노드를 갖으며 부모 왼쪽 자식은 보다 작고, 부모 오른쪽 자식은 보다 큽니다.
 - TreeSet은 compare()를 호출하여 값을 비교합니다.
+- 장점 : 정렬된 상태로 저장.
 - 단점 : 데이터가 많아질 수록 추가/삭제 시간이 오래 걸립니다.
 - 주요 생성자와 메서드
     ```java
@@ -1280,5 +1281,11 @@ Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br 
     SortedSet subSet(Object fromElement, Object toElement) : 범위 검색의 결과를 반환합니다.(~이상 ~미만)
     SortedSet headSet(Object toElement) : 지정된 객체보다 작은 값의 객체들을 반환합니다.
     SortedSet tailSet(Object from Element) : 지정된 객체보다 큰 값의 객체들을 반환합니다.
+    ---------------------------
+    TreeSet set = new TreeSet();
+    ...
+    set.headSet(50);            // 50이상의 값들 반환
+    set.tailSet(50);            // 50미만의 값들 반환
+    set.subSet(40, 80);         // 40이상, 80미만의 값들 반환
     ```
 
