@@ -46,6 +46,7 @@
     - [Comparator, Comparable](#comparator-comparable)
 - [HashSet](#hashset)
 - [TreeSet](#treeset)
+- [HashMap과 Hashtable](#hashmap과-hashtable)
 
 ## 자바의 특징
 - 객체지향
@@ -1289,3 +1290,11 @@ Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br 
     set.subSet(40, 80);         // 40이상, 80미만의 값들 반환
     ```
 
+## HashMap과 Hashtable
+Map인터페이스룰 구현하며 데이터를 키와 값의 쌍으로 저장합니다. **순서X, 중복(키X, 값O)**
+### HashMap
+- **LinkedHashMap** 클래스를 사용하면 **순서를 유지**할 수 있습니다.
+### TreeMap
+- 범위 검색과 정렬에 유리한 컬렉션 클래스입니다.
+- HashMap보다 데이터 추가, 삭제가 느립니다.
+- 키와 값을 쌍으로 저장하는 요소만 제외하면 [TreeSet](#treeset)과 동일합니다.
