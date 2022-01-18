@@ -339,7 +339,7 @@ class MyMath2 {
 ```java
 void println()
 void println(boolean x)
-void println(char x)ㅠ 
+void println(char x)
 void println(char[] x)
 void println(double x)
 void println(float x)
