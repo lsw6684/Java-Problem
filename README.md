@@ -38,15 +38,28 @@
     - [instanceof 연산자](#instanceof-연산자)
 - [추상 클래스](#추상-클래스)
 - [인터페이스](#인터페이스)
-- [메서드](#메서드)
+- [Methods](#methods)
     - [hashCode()](#hashcode)
     - [toString()](#tostring)
-- [인터페이스](#인터페이스)
+- [Interfaces](#interfaces)
     - [Iterator](#iterator)
     - [Comparator, Comparable](#comparator-comparable)
-- [HashSet](#hashset)
-- [TreeSet](#treeset)
-- [HashMap과 Hashtable](#hashmap과-hashtable)
+- [Collection](#collection)
+    - [Set](#set)
+        - [HashSet](#hashset)
+        - [TreeSet](#treeset)
+    - [List](#list)
+        - [LinkedList](#linkedlist)
+        - [Vector](#vector)
+        - [ArrayList](#arraylist)
+    - [Queue](#queue)
+        - [LinkedList](#linkedlist)
+        - [PriorityQueue](#priorityqueue)
+    - [Map](#map)
+        - [Hashtable](#hashtable)
+        - [HashMap](#hashmap)
+        - [TreeMap](#treemap)
+
 
 ## 자바의 특징
 - 객체지향
@@ -1155,7 +1168,7 @@ abstract class Fighter implements Fightable {
         return new Fighter();
     }
     ```
-## 메서드
+## Methods
 ### hashCode()
 객체의 해시코드를 반환하는 메서드입니다. Object클래스에 속하며 객체의 주소를 int로 변환해서 반환합니다.
 - equals()를 오버라이딩 하면, hashCode()도 오버라이딩 합니다. equals()의 결과가 true라는 것은 **두 객체의 해시코드가 같다**는 것이기 때문입니다.
@@ -1164,7 +1177,7 @@ abstract class Fighter implements Fightable {
 객체를 문자열(String)로 변환합니다.
 
 
-## 인터페이스
+## Interfaces
 ### Iterator
 컬렉션에 저장된 데이터를 접근하는 데 사용되는 인터페이스입니다. (Enumeration의 신버전)
 - 주요 메서드
@@ -1290,7 +1303,6 @@ Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br 
     set.subSet(40, 80);         // 40이상, 80미만의 값들 반환
     ```
 
-## HashMap과 Hashtable
 Map인터페이스룰 구현하며 데이터를 키와 값의 쌍으로 저장합니다. **순서X, 중복(키X, 값O)**
 ### HashMap
 - **LinkedHashMap** 클래스를 사용하면 **순서를 유지**할 수 있습니다.
