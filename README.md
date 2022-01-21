@@ -1247,12 +1247,9 @@ abstract class Fighter implements Fightable {
     String[] strArr = {"cat", "Dog", "lion", "Apple"};
     Arrays.sort(strArr, new Descending()); 
     ```
+## Collection
 
-## HashSet
-Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br />
-객체를 저장하기 전에 기존에 같은 객체가 있는지 확인합니다. **(없으면 저장, 있으면 저장x)**
-- HashSet은 equals(), hashCode()로 값을 비교합니다.
-- 주요 메서드
+- Collection 인터페이스의 메서드
     ```java 
     boolean add(Object o) : 추가
     boolean addAll(Collection c) : 합집합
@@ -1268,6 +1265,36 @@ Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br 
     Object[] toArray(Object[] a) : 객체 배열로 반환
     Iterator iterator() : 컬렉션의 요소를 읽는 이터레이터.
     ```
+
+### List
+순서 O, 중복 O
+- List 인터페이스의 메서드
+    ```java
+    void add(int index, Object element) : 지정된 위치(index)에 객체(element) 추가.
+    boolean addAll(int index, Collection c) : 지정된 위치(index)에 컬렉션에 포함된 객체들을 추가.
+    Object get(int index) : 지정된 위치(index)에 있는 객체를 반환.
+    int indexOf(Object o) : 지정된 객체의 위치(index)를 반환 - 순방향.
+    int lastIndexOf(Object o) : 지정된 객체의 위치(index)를 반환 - 역방향.
+    ListIterator listIterator() : List의 객체에 접근할 수 있는 ListIterator를 반환.
+    ListIterator listIterator(int index) : List의 객체에 접근할 수 있는 ListIterator를 반환.
+    Object remove(int index) : 지정된 위치(index)에 있는 객체를 삭제하고 삭제된 객체를 반환.
+    Object set(int index, Object element) : 지정된 위치(index)에 객체(element)를 저장.
+    void sort(Comparator c) : 지정된 비교자(comparator)로 List를 정렬.
+    List subList(int fromIndex, int toIndex) : 지정된 범위에 있는 객체를 반환
+
+    ```
+
+### Set
+순서 X, 중복 X
+
+### Map
+순서 X, 중복(키 X, 값 O)
+
+#### HashSet
+Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br />
+객체를 저장하기 전에 기존에 같은 객체가 있는지 확인합니다. **(없으면 저장, 있으면 저장x)**
+- HashSet은 equals(), hashCode()로 값을 비교합니다.
+
 
 
 - LinkedHashSet <br />
