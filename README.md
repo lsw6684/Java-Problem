@@ -513,6 +513,7 @@ class Car2{
 
     // 1번과 2번이 3번을 호출합니다.
 }
+
 ```
 ### 참조변수 this
 - 인스턴스 자신을 가리키는 참조변수입니다.
@@ -1200,8 +1201,6 @@ abstract class Fighter implements Fightable {
     Iterator it = map.entrySet().iterator();
     ```
 
-
-
 ### Comparator, Comparable
 객체 정렬에 필요한 메서드(정렬기준 제공)를 정의한 인터페이스입니다.
 - Comparable : 기본 정렬 기준을 구현하는 데 사용합니다.
@@ -1296,52 +1295,65 @@ List와 Set을 자손으로 가집니다.
             HashSet에서 순서를 유지하기 위해 사용.
             
     - #### TreeSet
-        범위 검색과 정렬에 유리한 컬렉션 클래스. 데이터가 많을 수록 HashSet보다 데이터 추가/삭제에 시간이 오래 걸립니다.
-- ### Map
-    순서 X, 중복(키 X, 값 O)
+        범위 검색과 정렬에 유리한 컬렉션 클래스. 데이터가 많을 수록 HashSet보다 데이터 추가/삭제에 시간이 오래 걸립니다.<br />
+        이진 탐색 트리(Binary search tree)로 구현되어 있으며, 정렬에 유리합니다. 모든 노드가 0 ~ 2개의 하위 노드를 갖으며 부모 왼쪽 자식은 보다 작고, 부모 오른쪽 자식은 보다 큽니다.
+        - TreeSet은 compare()를 호출하여 값을 비교합니다.
+        - 장점 : 정렬된 상태로 저장.
+        - 단점 : 데이터가 많아질 수록 추가/삭제 시간이 오래 걸립니다.
+        - 주요 생성자와 메서드
+            ```java
+            기본 메서드는 Collection과 동일합니다.
+            TreeSet() : 기본 생성자
+            TreeSet(Collection c) : 주어진 컬렉션을 저장하는 TreeSet을 생성.
+            TreeSet(Comparator comp) : 주어진 정렬기준으로 정렬하는 TreeSet을 생성.
+            Object first() : 정렬된 순서에서 첫 번째 객체를 반환.
+            Object last() : 정렬된 순서에서 마지막 객체를 반환.
+            Object ceiling(Object o) : 지정된 객체와 같은 객체를 반환하며 없으면 큰 값을 가진 객체 중 제일 가까운 값의 객체를 반환합니다. 그마저도 없으면 null 반환.
+            Object floor(Object o) : ceiling의 반대입니다.
+            Object higher(Object o) : 지정된 객체보다 큰 값을 반환하며, 없으면 null.
+            Object lower(Object o) : 지정된 객체보다 작은 값을 반환하며, 없으면 null.
+            SortedSet subSet(Object fromElement, Object toElement) : 범위 검색의 결과를 반환합니다.(~이상 ~미만)
+            SortedSet headSet(Object toElement) : 지정된 객체보다 작은 값의 객체들을 반환합니다.
+            SortedSet tailSet(Object from Element) : 지정된 객체보다 큰 값의 객체들을 반환합니다.
+            ---------------------------
+            TreeSet set = new TreeSet();
+            ...
+            set.headSet(50);            // 50이상의 값들 반환
+            set.tailSet(50);            // 50미만의 값들 반환
+            set.subSet(40, 80);         // 40이상, 80미만의 값들 반환
+            ```
 
+- ### Map
+    순서 X, 중복(키 X, 값 O) <br />
+    Map인터페이스룰 구현하며 데이터를 키와 값의 쌍으로 저장합니다.
+    - 인터페이스
+        ```java
+        void clear() : Map의 모든 객체를 삭제.
+        boolean containsKey(Object key) : 지정된 key객체가 있는지 확인.
+        boolean containsValue(Object value) : 지정된 value객체와 일치하는 Map의 value객체가 있는지 확인.
+        Set entrySet() : Map에 저장되어 있는 key-value쌍을 Map.Entry타입의 객체로 저장한 Set으로 반환.
+        boolean equals(Object o) : 동일한 Map인지 비교.
+        Object get(Object key) : 지정한 key객체에 대응하는 value객체를 찾아서 반환.
+        int hashCode() : 해시코드를 반환
+        boolean isEmpty() : Map이 비어있는지 확인.
+        Set keySet() : Map에 저장된 모든 key객체 반환.
+        Object put(Object key, Object value) : Map에 value객체를 key객체에 연결(mapping)하여 저장.
+        void putAll(Map t) : 지정된 Map의 모든 key-value쌍을 추가.
+        Object remove(Object key) : 지정한 key객체와 일치하는 key-value객체를 삭제.
+        int size() : Map에 저장된 key-value쌍의 개수 반환.
+        Collection values() : Map에 저장된 모든 value객체 반환.
+        ```
+    - #### Hashtable
+        동기화가 되어있습니다.
+    - #### HashMap
+        - **LinkedHashMap** 클래스를 사용하면 **순서를 유지**할 수 있습니다.
+        - 해싱기법으로 데이터를 저장하여, 데이터가 많아도 검색이 빠릅니다.
+        -   ```
+            해싱 : 특정 키값을 넣으면 해시함수를 통해 Index(해시코드)를 얻습니다. 배열과 LinkedList가 조합된 형태인, 해시테이블(hash table)에서 저장/읽기를 수행하기 떄문에 아래 두 장점을 취할 수 있습니다.
+            배열의 장점 - 접근성.
+            LinkedList - 변경에 유리.
+            ```
     - #### TreeMap
         - 범위 검색과 정렬에 유리한 컬렉션 클래스입니다.
         - HashMap보다 데이터 추가, 삭제가 느립니다.
         - 키와 값을 쌍으로 저장하는 요소만 제외하면 [TreeSet](#treeset)과 동일합니다.
-
-
-
-## TreeSet
-이진 탐색 트리(Binary search tree)로 구현되어 있으며, 정렬에 유리합니다. 모든 노드가 0 ~ 2개의 하위 노드를 갖으며 부모 왼쪽 자식은 보다 작고, 부모 오른쪽 자식은 보다 큽니다.
-- TreeSet은 compare()를 호출하여 값을 비교합니다.
-- 장점 : 정렬된 상태로 저장.
-- 단점 : 데이터가 많아질 수록 추가/삭제 시간이 오래 걸립니다.
-- 주요 생성자와 메서드
-    ```java
-    기본 메서드는 Collection과 동일합니다.
-    TreeSet() : 기본 생성자
-    TreeSet(Collection c) : 주어진 컬렉션을 저장하는 TreeSet을 생성.
-    TreeSet(Comparator comp) : 주어진 정렬기준으로 정렬하는 TreeSet을 생성.
-    Object first() : 정렬된 순서에서 첫 번째 객체를 반환.
-    Object last() : 정렬된 순서에서 마지막 객체를 반환.
-    Object ceiling(Object o) : 지정된 객체와 같은 객체를 반환하며 없으면 큰 값을 가진 객체 중 제일 가까운 값의 객체를 반환합니다. 그마저도 없으면 null 반환.
-    Object floor(Object o) : ceiling의 반대입니다.
-    Object higher(Object o) : 지정된 객체보다 큰 값을 반환하며, 없으면 null.
-    Object lower(Object o) : 지정된 객체보다 작은 값을 반환하며, 없으면 null.
-    SortedSet subSet(Object fromElement, Object toElement) : 범위 검색의 결과를 반환합니다.(~이상 ~미만)
-    SortedSet headSet(Object toElement) : 지정된 객체보다 작은 값의 객체들을 반환합니다.
-    SortedSet tailSet(Object from Element) : 지정된 객체보다 큰 값의 객체들을 반환합니다.
-    ---------------------------
-    TreeSet set = new TreeSet();
-    ...
-    set.headSet(50);            // 50이상의 값들 반환
-    set.tailSet(50);            // 50미만의 값들 반환
-    set.subSet(40, 80);         // 40이상, 80미만의 값들 반환
-    ```
-
-Map인터페이스룰 구현하며 데이터를 키와 값의 쌍으로 저장합니다. **순서X, 중복(키X, 값O)**
-### HashMap
-- **LinkedHashMap** 클래스를 사용하면 **순서를 유지**할 수 있습니다.
-- 해싱기법으로 데이터를 저장하여, 데이터가 많아도 검색이 빠릅니다.
--   ```
-    해싱 : 특정 키값을 넣으면 해시함수를 통해 Index(해시코드)를 얻습니다. 배열과 LinkedList가 조합된 형태인, 해시테이블(hash table)에서 저장/읽기를 수행하기 떄문에 아래 두 장점을 취할 수 있습니다.
-    배열의 장점 - 접근성.
-    LinkedList - 변경에 유리.
-    ```
-
