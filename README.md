@@ -1248,14 +1248,15 @@ abstract class Fighter implements Fightable {
     Arrays.sort(strArr, new Descending()); 
     ```
 ## Collection
+List와 Set을 자손으로 가집니다.
 
 - Collection 인터페이스의 메서드
     ```java 
     boolean add(Object o) : 추가
     boolean addAll(Collection c) : 합집합
     boolean remove(Object o) : 삭제
-    boolean removeAll(Collection c) : 교집합
-    boolean retainAll(Collection c) : 조건부 삭제
+    boolean removeAll(Collection c) : 차집합
+    boolean retainAll(Collection c) : 교집합
     boolean contains(Object o) : 포함 여부.
     boolean containsAll(Collection c) : 컬렉션에 담긴 여러 객체가 모두 포함되어 있는지.
     void clear() : 모두 삭제
@@ -1266,41 +1267,45 @@ abstract class Fighter implements Fightable {
     Iterator iterator() : 컬렉션의 요소를 읽는 이터레이터.
     ```
 
-### List
-순서 O, 중복 O
-- List 인터페이스의 메서드
-    ```java
-    void add(int index, Object element) : 지정된 위치(index)에 객체(element) 추가.
-    boolean addAll(int index, Collection c) : 지정된 위치(index)에 컬렉션에 포함된 객체들을 추가.
-    Object get(int index) : 지정된 위치(index)에 있는 객체를 반환.
-    int indexOf(Object o) : 지정된 객체의 위치(index)를 반환 - 순방향.
-    int lastIndexOf(Object o) : 지정된 객체의 위치(index)를 반환 - 역방향.
-    ListIterator listIterator() : List의 객체에 접근할 수 있는 ListIterator를 반환.
-    ListIterator listIterator(int index) : List의 객체에 접근할 수 있는 ListIterator를 반환.
-    Object remove(int index) : 지정된 위치(index)에 있는 객체를 삭제하고 삭제된 객체를 반환.
-    Object set(int index, Object element) : 지정된 위치(index)에 객체(element)를 저장.
-    void sort(Comparator c) : 지정된 비교자(comparator)로 List를 정렬.
-    List subList(int fromIndex, int toIndex) : 지정된 범위에 있는 객체를 반환
+- ### List
+    순서 O, 중복 O
+    - List 인터페이스의 메서드
+        ```java
+        void add(int index, Object element) : 지정된 위치(index)에 객체(element) 추가.
+        boolean addAll(int index, Collection c) : 지정된 위치(index)에 컬렉션에 포함된 객체들을 추가.
+        Object get(int index) : 지정된 위치(index)에 있는 객체를 반환.
+        int indexOf(Object o) : 지정된 객체의 위치(index)를 반환 - 순방향.
+        int lastIndexOf(Object o) : 지정된 객체의 위치(index)를 반환 - 역방향.
+        ListIterator listIterator() : List의 객체에 접근할 수 있는 ListIterator를 반환.
+        ListIterator listIterator(int index) : List의 객체에 접근할 수 있는 ListIterator를 반환.
+        Object remove(int index) : 지정된 위치(index)에 있는 객체를 삭제하고 삭제된 객체를 반환.
+        Object set(int index, Object element) : 지정된 위치(index)에 객체(element)를 저장.
+        void sort(Comparator c) : 지정된 비교자(comparator)로 List를 정렬.
+        List subList(int fromIndex, int toIndex) : 지정된 범위에 있는 객체를 반환
 
-    ```
+        ```
 
-### Set
-순서 X, 중복 X
+- ### Set
+    순서 X, 중복 X로 [List](#list)와 완전히 반대입니다. <br />
+    메서드는 Collection 인터페이스와 동일.
+    - #### HashSet
+        Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br />
+        객체를 저장하기 전에 기존에 같은 객체가 있는지 확인합니다. **(없으면 저장, 있으면 저장x)**
+        - HashSet은 equals(), hashCode()로 값을 비교합니다.
+        - LinkedHashSet <br />
+            HashSet에서 순서를 유지하기 위해 사용.
+            
+    - #### TreeSet
+        범위 검색과 정렬에 유리한 컬렉션 클래스. 데이터가 많을 수록 HashSet보다 데이터 추가/삭제에 시간이 오래 걸립니다.
+- ### Map
+    순서 X, 중복(키 X, 값 O)
 
-### Map
-순서 X, 중복(키 X, 값 O)
-
-#### HashSet
-Set 인터페이스를 구현하여 **순서X, 중복 X (List와 반대)**. <br />
-객체를 저장하기 전에 기존에 같은 객체가 있는지 확인합니다. **(없으면 저장, 있으면 저장x)**
-- HashSet은 equals(), hashCode()로 값을 비교합니다.
+    - #### TreeMap
+        - 범위 검색과 정렬에 유리한 컬렉션 클래스입니다.
+        - HashMap보다 데이터 추가, 삭제가 느립니다.
+        - 키와 값을 쌍으로 저장하는 요소만 제외하면 [TreeSet](#treeset)과 동일합니다.
 
 
-
-- LinkedHashSet <br />
-    HashSet에서 순서를 유지하기 위해 사용.
-- TreeSet <br />
-    범위 검색과 정렬에 유리한 컬렉션 클래스. 데이터가 많을 수록 HashSet보다 데이터 추가/삭제에 시간이 오래 걸립니다.
 
 ## TreeSet
 이진 탐색 트리(Binary search tree)로 구현되어 있으며, 정렬에 유리합니다. 모든 노드가 0 ~ 2개의 하위 노드를 갖으며 부모 왼쪽 자식은 보다 작고, 부모 오른쪽 자식은 보다 큽니다.
@@ -1340,7 +1345,3 @@ Map인터페이스룰 구현하며 데이터를 키와 값의 쌍으로 저장�
     LinkedList - 변경에 유리.
     ```
 
-### TreeMap
-- 범위 검색과 정렬에 유리한 컬렉션 클래스입니다.
-- HashMap보다 데이터 추가, 삭제가 느립니다.
-- 키와 값을 쌍으로 저장하는 요소만 제외하면 [TreeSet](#treeset)과 동일합니다.
