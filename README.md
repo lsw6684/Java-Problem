@@ -45,13 +45,13 @@
     - [Iterator](#iterator)
     - [Comparator, Comparable](#comparator-comparable)
 - [Collection](#collection)
-    - [Set](#set)
-        - [HashSet](#hashset)
-        - [TreeSet](#treeset)
     - [List](#list)
         - [LinkedList](#linkedlist)
         - [Vector](#vector)
         - [ArrayList](#arraylist)
+    - [Set](#set)
+        - [HashSet](#hashset)
+        - [TreeSet](#treeset)
     - [Queue](#queue)
         - [LinkedList](#linkedlist)
         - [PriorityQueue](#priorityqueue)
@@ -99,22 +99,34 @@ float f = (float)1234;
 ```
 
 ## 배열
-```java
-public class Main {
-    public static void main(String[] args) {
-        int[] score;                        // 배열 score선언(참조 변수)
-        score = new int[5];                 // 배열의 생성(int저장공간 x 5) 
-        System.out.println(score.length);   // 배열의 길이
+- 장점
+    - 구조가 간단하고 데이터 접근 시간이 짧습니다.
+- 단점
+    - 크기를 변경할 수 없습니다.
+        - ***변경을 위해선, 새로운 배열을 생성 후 데이터를 복사해야 합니다.***
+        - 배열 복사 순서
+        1. 더 큰 배열 생성
+        2. 기존 내용 복사
+        3. 참조 변경
+    - 크기 변경을 피하기 위해 충분히 큰 배열을 생성하면 되지만 **메모리가 낭비됩니다.**
+    - 비순차적 데이터의 추가/삭제가 오래걸립니다.
+- 
+    ```java
+    public class Main {
+        public static void main(String[] args) {
+            int[] score;                        // 배열 score선언(참조 변수)
+            score = new int[5];                 // 배열의 생성(int저장공간 x 5) 
+            System.out.println(score.length);   // 배열의 길이
 
-        // char배열인 경우만 아래 방법으로 요소 출력 가능.
-        char[] cArr = {'a', 'b', 'c'};
-        System.out.print(cArr);
+            // char배열인 경우만 아래 방법으로 요소 출력 가능.
+            char[] cArr = {'a', 'b', 'c'};
+            System.out.print(cArr);
 
-        // 요소들을 String으로 치환 후 [a, b, c]로 출력된다.
-        System.out.println(Arrays.toString(cArr));  
+            // 요소들을 String으로 치환 후 [a, b, c]로 출력된다.
+            System.out.println(Arrays.toString(cArr));  
+        }
     }
-}
-```
+    ```
 
 ## Arrays
 Arrays는 하나의 클래스입니다. <hr />
@@ -1283,6 +1295,35 @@ List와 Set을 자손으로 가집니다.
         List subList(int fromIndex, int toIndex) : 지정된 범위에 있는 객체를 반환
 
         ```
+    - #### LinkedList
+        - 배열의 단점 *(크기 변경 불가, 추가 삭제 시간 향상)* 보완.
+        - 불연속적 데이터를 연결합니다.
+        - <p align="center"><img src="images/LL.png" width="100%"></p>
+
+            ```java
+            class Node {
+                Node next;
+                Object obj;
+            }
+            ``` 
+        - 장점
+            - 데이터 삭제 시 **단 한 번의 참조 변경만으로도 가능**합니다.
+            - 데이터 삽입 시 **한 번의 Node 객체생성과 두 번의 참조 변경만으로도 가능**합니다.
+        - 단점
+            - **접근성**이 안 좋습니다.
+        - 접근성(앞, 뒤) 향상을 위한, **이중 연결리스트(doubly linked list)**
+            - <p align="center"><img src="images/DLL.png" width="100%"></p>
+
+            ```java
+            class Node {
+                Node next;
+                Node previous;  // 참조 변수를 하나 더 추가한 구조.
+                Object obj;
+            }
+            // 추가, 삭제 시 더 큰 비용이 발생
+            ```
+        - 이중 연결리스트를 개선한 **이중 원형 연결리스트(doubly circular linked list)**
+            - <p align="center"><img src="images/DCLL.png" width="100%"></p>
 
 - ### Set
     순서 X, 중복 X로 [List](#list)와 완전히 반대입니다. <br />
