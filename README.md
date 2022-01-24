@@ -1324,6 +1324,42 @@ List와 Set을 자손으로 가집니다.
             ```
         - 이중 연결리스트를 개선한 **이중 원형 연결리스트(doubly circular linked list)**
             - <p align="center"><img src="images/DCLL.png" width="100%"></p>
+    - #### Vector
+        - 자체적으로 동기화 처리가 되어있습니다.
+    - #### ArrayList
+        - ArrayList는 기존의 Vector를 개선한 것으로 구현원리, 기능이 동일합니다.
+        - List인터페이스를 구현하므로, 저장순서가 유지되고 중복을 허용합니다.
+        - 데이터 저장 공간으로 배열을 사용합니다.(배열 기반)
+        - 동기화 처리가 되어있지 않습니다.([Thread](#thread) 참고)
+        - ArrayList의 메서드
+            ```java
+            ArrayList()
+            ArrayList(Collection c)
+            ArrayList(int initialCapacity)
+            
+            boolean add(Object o)
+            void add(int index object element)
+            boolean addAll(Collection c)
+            boolean addAll(int index, Collection c)
+
+            boolean remove(Object o)
+            Object remove(int index)
+            boolean removeAll(Collection c)
+            void clear()
+
+            int indexOf(Object o)                   // 왼쪽부터 객체 찾기
+            int lastIndexOf(Object o)               // 오른쪽부터 객체 찾기
+            boolean contains(Object o)              // 지정된 객체가 존재 하는지
+            Object get(int index)                   // 객체 읽기
+            object set(int index, Object element)   // 인덱스의 객체 변경
+
+            List subList(int fromIndex, int toIndex)// 리스트의 일부를 추출하여 새로운 리스트 생성
+            Object[] toArray()                      // ArrayList의 객체 배열을 반환
+            Object[] toArray(Object[] a)
+            boolean isEmpty()
+            void trimToSize()                       // 빈 공간 제거
+            int size()                              // 객체 개수 반환
+            ```
 
 - ### Set
     순서 X, 중복 X로 [List](#list)와 완전히 반대입니다. <br />
