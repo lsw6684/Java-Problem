@@ -1331,6 +1331,11 @@ List와 Set을 자손으로 가집니다.
         - List인터페이스를 구현하므로, 저장순서가 유지되고 중복을 허용합니다.
         - 데이터 저장 공간으로 배열을 사용합니다.(배열 기반)
         - 동기화 처리가 되어있지 않습니다.([Thread](#thread) 참고)
+        - Autoboxing에 의해 기본형이 참조형으로 자동 변환됩니다.
+            ```java
+            list.add(1);                // 기본형
+            list.add(new Integer(1));   // 참조형
+            ```
         - ArrayList의 메서드
             ```java
             ArrayList()
@@ -1360,6 +1365,7 @@ List와 Set을 자손으로 가집니다.
             void trimToSize()                       // 빈 공간 제거
             int size()                              // 객체 개수 반환
             ```
+        - Array
 
 - ### Set
     순서 X, 중복 X로 [List](#list)와 완전히 반대입니다. <br />
@@ -1399,7 +1405,9 @@ List와 Set을 자손으로 가집니다.
             set.tailSet(50);            // 50미만의 값들 반환
             set.subSet(40, 80);         // 40이상, 80미만의 값들 반환
             ```
-
+- ### Queue
+    - #### LinkedList
+    - #### PriorityQueue
 - ### Map
     순서 X, 중복(키 X, 값 O) <br />
     Map인터페이스룰 구현하며 데이터를 키와 값의 쌍으로 저장합니다.
