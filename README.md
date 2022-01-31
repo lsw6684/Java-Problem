@@ -3,6 +3,7 @@
 - [JVM](#jvm)
 - [Variable](#variable)
 - [기본형과 참조형](#기본형과-참조형)
+- [래퍼(Wrapper) 클래스](#래퍼wrpper-클래스)
 - [배열](#배열)
 - [Arrays](#arrays)
 - [객체지향](#객체지향)
@@ -97,6 +98,18 @@ today = new Date(); // today에 객체의 주소 저장.
 float f = 1234;
 float f = (float)1234;
 ```
+
+## 래퍼(Wrapper) 클래스
+8개의 기본형을 객체로 다뤄야할 때 사용하는 클래스입니다.
+```java
+public final class Integer extends Number implements Comparable {
+    ...
+    private int value;  // 기본형(int)을 감싸고 있습니다.
+    ...
+}
+```
+<p align="center"><img src="images/wrapper.png" width="50%"></p>
+
 
 ## 배열
 - 장점
