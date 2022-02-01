@@ -1276,6 +1276,27 @@ List와 Set을 자손으로 가집니다.
 
 - Collection 인터페이스의 메서드
     ```java 
+    // 기본 메서드
+    fill(), copy(), sort(), binarySearch()
+    
+    // 컬렉션의 동기화
+    static Collection   synchronizedCollection(Collection c)
+    static List         synchronizedCollection(List list)
+    static Set          synchronizedCollection(Set s)
+    static Map          synchronizedCollection(Map m)
+    static SortedSet    synchronizedCollection(SortedSet s)
+    static SortedMap    synchronizedCollection(SortedMap m)
+
+    // 변경 불가(readOnly) 컬렉션 만들기
+    static Collection   unmodifiableCollection(Collection c)
+    static List         unmodifiableList(List list)
+    static Set          unmodifiableSet(Set s)
+    static Map          unmodifiableMap(Map m)
+    static NavigableSet unmodifiableNavigableSet(Navigableset s)
+    static SortedSet    unmodifiableSortedSet(SortedSet s)
+    static NavigableMap unmodifiableNavigableMap(NavigableMap m)
+    static SortedMap    unmodifiableSortedMap(SortedMap m)
+
     boolean add(Object o) : 추가
     boolean addAll(Collection c) : 합집합
     boolean remove(Object o) : 삭제
