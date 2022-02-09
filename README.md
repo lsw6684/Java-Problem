@@ -60,7 +60,7 @@
         - [Hashtable](#hashtable)
         - [HashMap](#hashmap)
         - [TreeMap](#treemap)
-
+- [Generics](#generics)
 
 ## 자바의 특징
 - 객체지향
@@ -1476,3 +1476,17 @@ List와 Set을 자손으로 가집니다.
         - 범위 검색과 정렬에 유리한 컬렉션 클래스입니다.
         - HashMap보다 데이터 추가, 삭제가 느립니다.
         - 키와 값을 쌍으로 저장하는 요소만 제외하면 [TreeSet](#treeset)과 동일합니다.
+
+## Generics
+컴파일 시 타입을 체크하는 기능. *Compile-time type check* <br />
+객체의 타입 안정성을 높이고 형변환의 번거로움을 줄여줍니다.
+```java
+ArrayList<Tv> tvList = new ArrayList<Tv>();
+
+tvList.add(new Tv());       // OK
+tvList.add(new Audio());    // 컴파일 에러, Tv 외에 다른 타입은 저장 불가.
+```
+
+## Generics의 장점
+- 타입 안정성을 제공합니다.
+- 타입체크와 형변환을 생략할 수 있으므로 코드가 간결해 집니다.
