@@ -61,7 +61,7 @@
         - [HashMap](#hashmap)
         - [TreeMap](#treemap)
 - [Generics](#generics)
-
+    - [타입 변수](#타입-변수)
 ## 자바의 특징
 - 객체지향
 - 자동 메모리 관리
@@ -1487,6 +1487,29 @@ tvList.add(new Tv());       // OK
 tvList.add(new Audio());    // 컴파일 에러, Tv 외에 다른 타입은 저장 불가.
 ```
 
-## Generics의 장점
+### Generics의 장점
 - 타입 안정성을 제공합니다.
 - 타입체크와 형변환을 생략할 수 있으므로 코드가 간결해 집니다.
+
+### 타입 변수
+```java
+public class ArrayList extends AbstractList {
+    private transient Object[] elementData;
+    public boolean add(Object o) { -- }
+    public Object get(int index) { -- }
+}
+```
+**클래스를 작성할 떄, Object타입 대신 타입 변수(E)를 선언하여 사용합니다.**
+```java
+public class ArrayList<E> extends AbstractList<E> {
+    --
+    private transient E[] elementData;
+    public boolean add(E o) { -- }
+    public E get(int index) { -- }
+}
+```
+- 타입 변수에 대입
+객체 생성 시, 타입 변수(E) 대신, 실제 타입(Tv)을 지정(대입)
+    ```java
+    ArrayList<Tv> tvList = new ArrayList<Tv>();
+    ```
