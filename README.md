@@ -1487,9 +1487,17 @@ tvList.add(new Tv());       // OK
 tvList.add(new Audio());    // 컴파일 에러, Tv 외에 다른 타입은 저장 불가.
 ```
 
+### Generics 용어
+```java
+Box<T>      // generics class, 'T의 Box' 또는 'T Box'라고 읽습니다.
+T           // 타입 변수, 타입 매개변수(T는 타입 문자)
+Box         // 원시 타입(raw type), 일반 클래스
+```
+
 ### Generics의 장점
 - 타입 안정성을 제공합니다.
 - 타입체크와 형변환을 생략할 수 있으므로 코드가 간결해 집니다.
+<p align="center"><img src="images/generics.png" width="70%"></p>
 
 ### 타입 변수
 ```java
